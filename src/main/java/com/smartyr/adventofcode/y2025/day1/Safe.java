@@ -1,4 +1,4 @@
-package com.smartyr.adventofcode.y2025.Day1;
+package com.smartyr.adventofcode.y2025.day1;
 
 public class Safe {
     private static final int MAX = 99;
@@ -17,7 +17,7 @@ public class Safe {
         this.countRotations = countRotations;
     }
 
-    public void move(String instructions) {
+    public void move(final String instructions) {
         moveTotal++;
         char direction = instructions.charAt(0);
         int instruction = Integer.parseInt(instructions.substring(1));
@@ -35,14 +35,14 @@ public class Safe {
     }
 
     //If input is > 100 we need to divide % it.
-    public int validateInput(int input) {
+    public int validateInput(final int input) {
         int fullTurns = input / 100;
         this.fullRotations += fullTurns;
         return input % 100;
     }
 
     //move left removes
-    public void moveLeft(int instruction) {
+    public void moveLeft(final int instruction) {
         int location = dialLocation;
         dialLocation -= instruction;
         //prevent counting 0 twice.
@@ -59,7 +59,7 @@ public class Safe {
     }
 
     //move right increases
-    public void moveRight(int instruction) {
+    public void moveRight(final int instruction) {
         dialLocation += instruction;
         if (dialLocation > MAX) {
             fullRotations++;

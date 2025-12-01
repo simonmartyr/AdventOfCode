@@ -2,8 +2,8 @@ package com.smartyr.adventofcode.y2025;
 
 import java.util.List;
 
-import com.smartyr.adventofcode.y2025.Day1.Day1;
-import com.smartyr.adventofcode.y2025.Day1.Safe;
+import com.smartyr.adventofcode.y2025.day1.Day1;
+import com.smartyr.adventofcode.y2025.day1.Safe;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ class Day1Test {
     class Part1 {
         @Test
         void solve() {
-            assertThat(day1.invokeList(testSet)).isEqualTo(3);
+            assertThat(day1.invokeSet(new Safe(), testSet)).isEqualTo(3);
         }
 
         @Test
@@ -42,12 +42,12 @@ class Day1Test {
     class Part2 {
         @Test
         void solve() {
-            assertThat(day1.invokeListPart2(testSet)).isEqualTo(6);
+            assertThat(day1.invokeSet(new Safe(true), testSet)).isEqualTo(6);
         }
 
         @Test
         void solve2() {
-            List<String> s = List.of(
+            final List<String> s = List.of(
                     "L68", //1
                     "L30",
                     "R48", //2
@@ -62,19 +62,19 @@ class Day1Test {
                     "R50",
                     "R50"
             );
-            assertThat(day1.invokeListPart2(s)).isEqualTo(8);
+            assertThat(day1.invokeSet(new Safe(true), s)).isEqualTo(8);
         }
 
         @Test
         void verifyExample() {
-            List<String> input = List.of("R1000");
-            assertThat(day1.invokeListPart2(input)).isEqualTo(10);
+            final List<String> input = List.of("R1000");
+            assertThat(day1.invokeSet(new Safe(true), input)).isEqualTo(10);
         }
 
         @Test
         void verifyExample2() {
             List<String> input = List.of("R1050");
-            assertThat(day1.invokeListPart2(input)).isEqualTo(11);
+            assertThat(day1.invokeSet(new Safe(true), input)).isEqualTo(11);
         }
 
         @Test
