@@ -1,9 +1,8 @@
 package com.smartyr.adventofcode.y2025.day2;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.LongStream;
+
 
 public interface Input {
     List<String> PUZZLE_INPUT = List.of(
@@ -75,24 +74,16 @@ public interface Input {
         }
         final String hold = String.valueOf(input);
         final int length = hold.length();
-        Map<Integer, String> factors = new HashMap<>();
-        for (int i = 1; i <= length; i++) {
-            Map<Integer, String> store = new HashMap<>(factors);
-            for (Map.Entry<Integer, String> factor : factors.entrySet()) {
-                if (i % factor.getKey() != 0) {
-                    continue;
-                }
-                var ex = hold.substring(i - factor.getKey(), i);
-                if (!ex.equals(factor.getValue())) {
-                    store.remove(factor.getKey());
-                }
-            }
-            factors = store;
-            if (i == length || length % i != 0) {
+        for (int i = 1; i <= length / 2; i++) {
+            if (length % i != 0) {
                 continue;
             }
-            factors.put(i, hold.substring(0, i));
+            final String prefix = hold.substring(0, i);
+            final String repeated = prefix.repeat(length / i);
+            if (repeated.equals(hold)) {
+                return true;
+            }
         }
-        return !factors.isEmpty();
+        return false;
     }
 }
