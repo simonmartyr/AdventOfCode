@@ -17,4 +17,17 @@ public class Day2 {
                         .reduce(0, Long::sum)
                 ).reduce(0L, Long::sum);
     }
+
+    public long calculateInvalidIdsRepeating() {
+        return calculateInvalidIdsRepeating(PUZZLE_INPUT);
+    }
+
+    public long calculateInvalidIdsRepeating(List<String> input) {
+        return input.stream()
+                .map(Input::parseRange)
+                .map(range -> range
+                        .filter(Input::isInValidRepeating)
+                        .reduce(0, Long::sum)
+                ).reduce(0L, Long::sum);
+    }
 }

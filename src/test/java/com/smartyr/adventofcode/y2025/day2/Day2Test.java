@@ -1,7 +1,9 @@
 package com.smartyr.adventofcode.y2025.day2;
 
+import java.time.Duration;
 import java.util.List;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,13 +27,41 @@ class Day2Test {
 
     final Day2 day2 = new Day2();
 
-    @Test
-    void testExampleInput() {
-        assertThat(day2.calculateInvalidIds(EXAMPLE_INPUT)).isEqualTo(1227775554);
+    @Nested
+    class Part1 {
+        @Test
+        void testExampleInput() {
+            assertThat(day2.calculateInvalidIds(EXAMPLE_INPUT)).isEqualTo(1227775554);
+        }
+
+        @Test
+        void realInput() {
+            long start = System.nanoTime();
+            long res = day2.calculateInvalidIds();
+            System.out.println(Duration.ofNanos(System.nanoTime() - start));
+            assertThat(res).isEqualTo(18952700150L);
+        }
     }
 
-    @Test
-    void realInput() {
-        assertThat(day2.calculateInvalidIds()).isEqualTo(1227775554);
+    @Nested
+    class Part2 {
+        @Test
+        void testExampleInput() {
+            assertThat(day2.calculateInvalidIdsRepeating(EXAMPLE_INPUT)).isEqualTo(4174379265L);
+        }
+
+        @Test
+        void validateEachSet() {
+            assertThat(day2.calculateInvalidIdsRepeating(List.of("2121212118-2121212124")))
+                    .isEqualTo(2121212121);
+        }
+
+        @Test
+        void realInput() {
+            long start = System.nanoTime();
+            long res = day2.calculateInvalidIdsRepeating();
+            System.out.println(Duration.ofNanos(System.nanoTime() - start));
+            assertThat(res).isEqualTo(28858486244L);
+        }
     }
 }
