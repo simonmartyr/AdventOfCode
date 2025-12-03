@@ -2,6 +2,7 @@ package com.smartyr.adventofcode.y2025.day3;
 
 import java.time.Duration;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,17 +16,37 @@ class Day3Test {
     };
     final Day3 day3 = new Day3();
 
-    @Test
-    void partOneWithTestData() {
-        assertThat(day3.processBanks(TEST_BANKS)).isEqualTo(357);
+    @Nested
+    class PartOne {
+        @Test
+        void partOneWithTestData() {
+            assertThat(day3.processBanksPartOne(TEST_BANKS)).isEqualTo(357);
+        }
+
+        @Test
+        void partOne() {
+            long start = System.nanoTime();
+            long res = day3.partOne();
+            //PT0.00252475S
+            System.out.println(Duration.ofNanos(System.nanoTime() - start));
+            assertThat(res).isEqualTo(17074);
+        }
     }
 
-    @Test
-    void partOne() {
-        long start = System.nanoTime();
-        long res = day3.partOne();
-        //PT0.00252475S
-        System.out.println(Duration.ofNanos(System.nanoTime() - start));
-        assertThat(res).isEqualTo(17074);
+    @Nested
+    class PartTwo {
+        @Test
+        void partTwoWithTestData() {
+            assertThat(day3.processBanksPartTwo(TEST_BANKS)).isEqualTo(3121910778619L);
+        }
+
+        @Test
+        void partTwo() {
+            long start = System.nanoTime();
+            long res = day3.partTwo();
+            //PT0.004394708S
+            System.out.println(Duration.ofNanos(System.nanoTime() - start));
+            assertThat(res).isEqualTo(169512729575727L);
+        }
     }
 }

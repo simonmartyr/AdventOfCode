@@ -208,7 +208,7 @@ public interface BatteryBank {
         return bank.chars().map(c -> c - '0').toArray();
     }
 
-    static int calculateLargestJoltage(String bank) {
+    static int calculateLargestJoltageFromTwoBatteries(String bank) {
         int[] asArray = bankToArray(bank);
         int left = 0;
         int right = 0;
@@ -227,5 +227,25 @@ public interface BatteryBank {
         int lastItem = asArray[asArray.length - 1];
         right = Math.max(lastItem, right);
         return left + right;
+    }
+
+    static long calculateLargestJoltageFromTwelveBatteries(String bank) {
+        int[] asArray = bankToArray(bank);
+        String res = "";
+        int offset = 12;
+        int location = 0;
+        while (offset > 0) {
+            int hold = 0;
+            for (int i = location; i < asArray.length - offset + 1; i++) {
+                if (asArray[i] > hold) {
+                    hold = asArray[i];
+                    location = i + 1;
+                }
+            }
+            res += hold;
+            offset--;
+        }
+        //find the largest possible number and repeat until you populate the array.
+        return Long.parseLong(res);
     }
 }
