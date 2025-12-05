@@ -9,8 +9,8 @@ public interface Cafeteria extends Input {
         return freshRanges(RANGES);
     }
 
-    static List<IngredientRange> freshRanges(String[] ranges) {
-        List<IngredientRange> sortedRanges = Arrays.stream(ranges)
+    static List<IngredientRange> freshRanges(final String[] ranges) {
+        final List<IngredientRange> sortedRanges = Arrays.stream(ranges)
                 .map(IngredientRange::new)
                 .sorted()
                 .toList();
